@@ -112,6 +112,21 @@ O nome da profissional no site é **Anne Silva**. A logo do menu agora é feita 
 
 ## Para publicar
 
+**O site já está no ar pelo GitHub Pages:** https://leandrosanttosdev-tech.github.io/sejaseuolhar/
+(repositório: github.com/leandrosanttosdev-tech/sejaseuolhar)
+
+Para atualizar depois de mudar algo, abra o terminal nesta pasta e rode:
+
+```
+git add -A
+git commit -m "descreva a mudança"
+git push
+```
+
+Em 1 ou 2 minutos o site publicado é atualizado.
+
+Outras opções:
+
 Arraste a pasta inteira para o **Netlify Drop** (app.netlify.com/drop) ou use Vercel ou GitHub Pages. Depois é só ligar um domínio próprio, como sejaseuolhar.com.br.
 
 ### Prévia do link (WhatsApp, Instagram, Facebook)
