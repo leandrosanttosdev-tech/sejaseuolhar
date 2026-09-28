@@ -98,6 +98,8 @@
 
   /* ---------- Dúvidas: abre uma de cada vez, com animação ---------- */
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // navegadores antigos sem animação por código: as dúvidas abrem e fecham sem efeito
+  var canAnimate = typeof document.body.animate === 'function';
   var faqItems = document.querySelectorAll('#faq details');
   faqItems.forEach(function (item) {
     var summary = item.querySelector('summary');
@@ -117,13 +119,13 @@
 
     function openItem(el) {
       el.open = true;
-      if (reduceMotion) return;
+      if (reduceMotion || !canAnimate) return;
       var b = el.querySelector('.faq-body');
       var h = b.scrollHeight;
       b.animate([{ height: '0px', opacity: 0 }, { height: h + 'px', opacity: 1 }], { duration: 300, easing: 'ease' });
     }
     function closeItem(el) {
-      if (reduceMotion) { el.open = false; return; }
+      if (reduceMotion || !canAnimate) { el.open = false; return; }
       var b = el.querySelector('.faq-body');
       var anim = b.animate([{ height: b.scrollHeight + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], { duration: 250, easing: 'ease' });
       anim.onfinish = function () { el.open = false; };
