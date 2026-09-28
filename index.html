@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-title" content="Seja Seu Olhar">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=4">
 
   <!-- Dados para o Google (aparece melhor nas buscas) -->
   <script type="application/ld+json">
@@ -590,6 +590,71 @@
   <svg class="ico" aria-hidden="true"><use href="#i-whats"/></svg>
 </a>
 
-<script src="js/main.js?v=3"></script>
+<!-- ========== JANELA DE AGENDAMENTO ==========
+  Abre ao tocar em qualquer botão "Agendar". A pessoa escolhe procedimento, dia e período
+  e a conversa no WhatsApp já abre com a mensagem pronta.
+  Para mudar as opções, edite os itens abaixo (o texto do "value" é o que vai na mensagem).
+-->
+<div class="booking" id="booking" aria-hidden="true">
+  <div class="booking-backdrop" data-booking-close></div>
+  <div class="booking-sheet" role="dialog" aria-modal="true" aria-labelledby="booking-title" tabindex="-1">
+    <span class="booking-grip" aria-hidden="true"></span>
+    <div class="booking-head">
+      <div>
+        <span class="eyebrow">Agendamento</span>
+        <h2 id="booking-title">Vamos marcar o seu horário?</h2>
+      </div>
+      <button class="booking-close" type="button" aria-label="Fechar" data-booking-close><svg class="ico"><use href="#i-close"/></svg></button>
+    </div>
+
+    <form class="booking-form" id="booking-form">
+      <fieldset>
+        <legend><span>1</span> Qual procedimento?</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="servico" value="Extensão de Cílios"><span>Extensão de Cílios</span></label>
+          <label class="chip"><input type="radio" name="servico" value="Método UP EYES"><span>Método UP EYES</span></label>
+          <label class="chip"><input type="radio" name="servico" value="Nanopigmentação"><span>Nanopigmentação</span></label>
+          <label class="chip"><input type="radio" name="servico" value="Brow Lamination"><span>Brow Lamination</span></label>
+          <label class="chip"><input type="radio" name="servico" value="Design de Sobrancelhas"><span>Design de Sobrancelhas</span></label>
+          <label class="chip"><input type="radio" name="servico" value="Manutenção"><span>Manutenção</span></label>
+          <label class="chip chip-wide"><input type="radio" name="servico" value="avaliacao"><span>Ainda não sei, quero uma avaliação</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>2</span> Qual dia fica melhor?</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="dia" value="Terça"><span>Terça</span></label>
+          <label class="chip"><input type="radio" name="dia" value="Quarta"><span>Quarta</span></label>
+          <label class="chip"><input type="radio" name="dia" value="Quinta"><span>Quinta</span></label>
+          <label class="chip"><input type="radio" name="dia" value="Sexta"><span>Sexta</span></label>
+          <label class="chip"><input type="radio" name="dia" value="Sábado"><span>Sábado</span></label>
+          <label class="chip"><input type="radio" name="dia" value="Qualquer dia"><span>Tanto faz</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>3</span> Qual período?</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="periodo" value="Manhã"><span>Manhã <small>8h30 às 12h</small></span></label>
+          <label class="chip"><input type="radio" name="periodo" value="Tarde"><span>Tarde <small>12h às 18h</small></span></label>
+          <label class="chip"><input type="radio" name="periodo" value="Qualquer horário"><span>Qualquer horário</span></label>
+        </div>
+      </fieldset>
+
+      <div class="booking-preview" aria-live="polite">
+        <strong>Sua mensagem</strong>
+        <p id="booking-msg">Escolha o procedimento para montar sua mensagem.</p>
+      </div>
+
+      <a class="btn btn-primary btn-lg booking-send is-disabled" id="booking-send" href="#" target="_blank" rel="noopener" aria-disabled="true">
+        <svg class="ico"><use href="#i-whats"/></svg> Enviar no WhatsApp
+      </a>
+      <p class="booking-note">Você confirma o horário direto com a Anne pelo WhatsApp.</p>
+    </form>
+  </div>
+</div>
+
+<script src="js/main.js?v=4"></script>
 </body>
 </html>

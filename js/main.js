@@ -5,6 +5,23 @@
   'use strict';
   document.documentElement.classList.remove('no-js');
 
+  /* ---------- Sempre abrir no começo da página ---------- */
+  // O navegador costuma voltar para onde a pessoa parou; aqui a página sempre recomeça no topo
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  // Pula direto para o topo (sem a rolagem suave), funcionando também em navegadores antigos
+  function irParaTopo() {
+    var raiz = document.documentElement;
+    raiz.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    raiz.style.scrollBehavior = '';
+  }
+  if (location.hash) {
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+  }
+  irParaTopo();
+  window.addEventListener('load', function () { irParaTopo(); });
+  window.addEventListener('pageshow', function (e) { if (e.persisted) irParaTopo(); });
+
   var header = document.getElementById('site-header');
   var hero = document.getElementById('topo');
   var floating = document.getElementById('floating-cta');
@@ -332,6 +349,110 @@
       });
     }, { threshold: [0, 0.5] });
     reels.forEach(function (r) { playObs.observe(r); });
+  }
+
+  /* ---------- Janela de agendamento ---------- */
+  var booking = document.getElementById('booking');
+  if (booking) {
+    var WHATS = 'https://wa.me/5511967213865';
+    var form = document.getElementById('booking-form');
+    var sheet = booking.querySelector('.booking-sheet');
+    var sendBtn = document.getElementById('booking-send');
+    var msgBox = document.getElementById('booking-msg');
+    var lastFocus = null;
+
+    function valor(nome) {
+      var el = form.querySelector('input[name="' + nome + '"]:checked');
+      return el ? el.value : '';
+    }
+
+    function montarMensagem() {
+      var servico = valor('servico');
+      if (!servico) return '';
+      // O que a cliente escolhe vai entre *asteriscos*, que o WhatsApp mostra em negrito
+      var linhas = servico === 'avaliacao'
+        ? ['Olá, Anne! Vim pelo site e ainda não sei qual procedimento escolher. *Quero uma avaliação.*']
+        : ['Olá, Anne! Vim pelo site e quero agendar: *' + servico + '*'];
+      var dia = valor('dia'), periodo = valor('periodo');
+      if (dia) linhas.push('Dia de preferência: *' + dia + '*');
+      if (periodo) linhas.push('Período: *' + periodo + '*');
+      linhas.push('Quais horários você tem disponíveis?');
+      return linhas.join('\n');
+    }
+
+    // Prévia na tela: mostra o negrito de verdade em vez dos asteriscos
+    function previa(msg) {
+      msgBox.textContent = '';
+      msg.split(/(\*[^*]+\*)/).forEach(function (parte) {
+        if (/^\*[^*]+\*$/.test(parte)) {
+          var b = document.createElement('strong');
+          b.textContent = parte.slice(1, -1);
+          msgBox.appendChild(b);
+        } else if (parte) {
+          msgBox.appendChild(document.createTextNode(parte));
+        }
+      });
+    }
+
+    function atualizar() {
+      var msg = montarMensagem();
+      var ok = !!msg;
+      if (ok) previa(msg); else msgBox.textContent = 'Escolha o procedimento para montar sua mensagem.';
+      sendBtn.href = ok ? WHATS + '?text=' + encodeURIComponent(msg) : '#';
+      sendBtn.classList.toggle('is-disabled', !ok);
+      sendBtn.setAttribute('aria-disabled', ok ? 'false' : 'true');
+    }
+
+    function abrir(preServico) {
+      lastFocus = document.activeElement;
+      if (document.body.classList.contains('menu-open')) setMenu(false);
+      // Abre sem nada marcado para a cliente escolher; só o botão do UP EYES já vem com ele marcado
+      form.reset();
+      if (preServico) {
+        var alvo = form.querySelector('input[name="servico"][value="' + preServico + '"]');
+        if (alvo) alvo.checked = true;
+      }
+      atualizar();
+      booking.classList.add('is-open');
+      booking.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('booking-open');
+      sheet.scrollTop = 0;
+      setTimeout(function () { sheet.focus(); }, 50);
+    }
+
+    function fechar() {
+      booking.classList.remove('is-open');
+      booking.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('booking-open');
+      if (lastFocus) lastFocus.focus();
+    }
+
+    // Botões de agendar abrem a janela (links só com o número continuam abrindo o WhatsApp direto)
+    document.querySelectorAll('a[href*="wa.me"]').forEach(function (a) {
+      if (booking.contains(a)) return;
+      if (!a.matches('.btn, .floating-cta, .link-underline')) return;
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        abrir(a.textContent.indexOf('Quero o meu UP EYES') > -1 ? 'Método UP EYES' : '');
+      });
+    });
+
+    form.addEventListener('change', atualizar);
+    form.addEventListener('submit', function (e) { e.preventDefault(); });
+    sendBtn.addEventListener('click', function (e) {
+      if (sendBtn.classList.contains('is-disabled')) {
+        e.preventDefault();
+        form.querySelector('input[name="servico"]').focus();
+        return;
+      }
+      setTimeout(fechar, 300);
+    });
+    booking.querySelectorAll('[data-booking-close]').forEach(function (el) {
+      el.addEventListener('click', fechar);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && booking.classList.contains('is-open')) fechar();
+    });
   }
 
   /* ---------- Ano no rodapé ---------- */
