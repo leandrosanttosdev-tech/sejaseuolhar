@@ -432,7 +432,7 @@ img.img-reveal.is-in, .img-reveal.is-in > img, .img-reveal.is-in > .placeholder 
 @media (max-width: 900px) {
   :root { --header-h: 88px; }
   .logo { --s: .8; gap: 5px; }
-  .logo-by { font-size: 9.5px; letter-spacing: .28em; }
+  .logo-by { font-size: 11px; letter-spacing: .22em; }
   body.menu-open .logo, body.menu-open .logo-by { color: #fff; }
   .is-scrolled .logo { --s: .76; }
   .header-cta { display: none; }
@@ -553,7 +553,8 @@ img.img-reveal.is-in, .img-reveal.is-in > img, .img-reveal.is-in > .placeholder 
   .faq summary { font-size: 17px; }
 
   /* Botão fixo de agendar: mais discreto */
-  .floating-cta { right: 16px; bottom: 16px; width: 56px; height: 56px; box-shadow: 0 10px 24px rgba(194, 0, 107, .3); }
+  .floating-cta { right: 14px; bottom: 14px; width: 52px; height: 52px; box-shadow: 0 10px 24px rgba(194, 0, 107, .3); }
+  .floating-cta .ico { width: 26px; height: 26px; }
 
   /* Sem parallax no celular (mais leve e estável) */
   .hero-media, .collage-back, .collage-small { transform: none; translate: none; }
