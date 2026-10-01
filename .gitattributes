@@ -1,0 +1,17 @@
+# Normaliza finais de linha (evita diferenças entre Windows, Mac e Linux)
+* text=auto eol=lf
+
+# Arquivos binários
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.gif  binary
+*.webp binary
+*.ico  binary
+*.mp4  binary
+*.webm binary
+*.woff binary
+*.woff2 binary
+
+# Estatísticas de linguagem do GitHub
+docs/** linguist-documentation

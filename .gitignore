@@ -1,6 +1,26 @@
-# arquivos que não vão para o site publicado
+# Arquivos originais que não vão para o site publicado
 sobreannesilva.jpeg
 img/logo.jpg
 img/favicon.png
+
+# Sistema operacional
 Thumbs.db
 desktop.ini
+.DS_Store
+*.lnk
+
+# Editores
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+
+# Dependências e variáveis de ambiente (caso sejam usadas no futuro)
+node_modules/
+.env
+.env.*
+
+# Arquivos temporários e logs
+*.log
+*.tmp
+_teste*.html

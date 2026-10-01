@@ -1,6 +1,6 @@
-# Seja Seu Olhar · Landing page
+# Guia de edição · Seja Seu Olhar
 
-Site de uma página, responsivo (computador, tablet e celular), feito só com HTML, CSS e JavaScript puro. Não precisa instalar nada.
+Como trocar textos, fotos, cores, horários e feriados do site, sem precisar ser programador. A apresentação técnica do projeto está no [README](../README.md).
 
 ## Como abrir
 
@@ -11,14 +11,13 @@ Para editar com recarregamento automático, use o VS Code com a extensão **Live
 ## Estrutura
 
 ```
-seja-seu-olhar-site/
+sejaseuolhar/
 ├── index.html        → todo o conteúdo (textos, seções, links)
 ├── css/style.css     → visual (cores, fontes, tamanhos, versão celular)
-├── js/main.js        → interações
-└── img/              → imagens
-    ├── foto-principal.jpg
-    ├── logo.jpg
-    └── favicon.png
+├── js/main.js        → interações (agendamento, calendário, feriados, horários)
+├── img/              → imagens
+├── video/            → vídeos da seção "Em movimento"
+└── docs/             → este guia
 ```
 
 ## O que é clicável
@@ -124,11 +123,13 @@ Para atualizar depois de mudar algo, abra o terminal nesta pasta e rode:
 
 ```
 git add -A
-git commit -m "descreva a mudança"
+git commit -m "fix: descreva a mudança"
 git push
 ```
 
-Em 1 ou 2 minutos o site publicado é atualizado.
+Em 1 ou 2 minutos o site publicado é atualizado. Comece a mensagem com `feat:` (novidade), `fix:` (correção), `style:` (visual) ou `docs:` (textos de documentação). Veja o padrão completo no [README](../README.md#padrão-de-commits).
+
+Se mudar o `css/style.css` ou o `js/main.js`, aumente o número depois de `?v=` nas duas linhas do `index.html` que chamam esses arquivos. Assim o celular das clientes baixa a versão nova.
 
 Outras opções:
 
