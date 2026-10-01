@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=15">
 
   <!-- Dados para o Google (aparece melhor nas buscas) -->
   <script type="application/ld+json">
@@ -610,7 +610,7 @@
     <form class="booking-form" id="booking-form">
       <fieldset>
         <legend><span>1</span> Qual procedimento?</legend>
-        <div class="chips">
+        <div class="chips chips-servico">
           <label class="chip"><input type="radio" name="servico" value="Extensão de Cílios"><span>Extensão de Cílios</span></label>
           <label class="chip"><input type="radio" name="servico" value="Método UP EYES"><span>Método UP EYES</span></label>
           <label class="chip"><input type="radio" name="servico" value="Nanopigmentação"><span>Nanopigmentação</span></label>
@@ -623,28 +623,88 @@
 
       <fieldset>
         <legend><span>2</span> Qual dia fica melhor?</legend>
-        <div class="chips">
-          <label class="chip"><input type="radio" name="dia" value="Terça"><span>Terça</span></label>
-          <label class="chip"><input type="radio" name="dia" value="Quarta"><span>Quarta</span></label>
-          <label class="chip"><input type="radio" name="dia" value="Quinta"><span>Quinta</span></label>
-          <label class="chip"><input type="radio" name="dia" value="Sexta"><span>Sexta</span></label>
-          <label class="chip"><input type="radio" name="dia" value="Sábado"><span>Sábado</span></label>
-          <label class="chip"><input type="radio" name="dia" value="Qualquer dia"><span>Tanto faz</span></label>
+        <!-- Calendário: domingo, segunda, dias que já passaram e feriados ficam bloqueados.
+             A lista de feriados fica no arquivo js/main.js (procure por "FERIADOS"). -->
+        <div class="cal" id="cal">
+          <div class="cal-head">
+            <button type="button" class="cal-nav" data-cal="-1" aria-label="Mês anterior">&#8249;</button>
+            <strong class="cal-title" id="cal-title" aria-live="polite"></strong>
+            <button type="button" class="cal-nav" data-cal="1" aria-label="Próximo mês">&#8250;</button>
+          </div>
+          <div class="cal-week" aria-hidden="true"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div>
+          <div class="cal-grid" id="cal-grid"></div>
+          <p class="cal-legend"><span class="cal-dot cal-dot-off"></span>Fechado <span class="cal-dot cal-dot-feriado"></span>Feriado</p>
+          <ul class="cal-holidays" id="cal-holidays"></ul>
+          <input type="radio" name="dia" id="cal-value" value="" hidden>
         </div>
       </fieldset>
 
       <fieldset>
-        <legend><span>3</span> Qual período?</legend>
-        <div class="chips">
-          <label class="chip"><input type="radio" name="periodo" value="Manhã"><span>Manhã <small>8h30 às 12h</small></span></label>
-          <label class="chip"><input type="radio" name="periodo" value="Tarde"><span>Tarde <small>12h às 18h</small></span></label>
-          <label class="chip"><input type="radio" name="periodo" value="Qualquer horário"><span>Qualquer horário</span></label>
+        <legend><span>3</span> Qual horário?</legend>
+        <!-- Horários: para tirar ou incluir um, apague ou copie uma linha (o "value" é o que vai na mensagem).
+             Se a cliente escolher o dia de hoje, os horários que já passaram ficam bloqueados sozinhos. -->
+        <p class="slots-label">Manhã</p>
+        <div class="chips slots">
+          <label class="chip"><input type="radio" name="horario" value="8h30"><span>8h30</span></label>
+          <label class="chip"><input type="radio" name="horario" value="9h30"><span>9h30</span></label>
+          <label class="chip"><input type="radio" name="horario" value="10h30"><span>10h30</span></label>
+          <label class="chip"><input type="radio" name="horario" value="11h30"><span>11h30</span></label>
         </div>
+        <p class="slots-label">Tarde</p>
+        <div class="chips slots">
+          <label class="chip"><input type="radio" name="horario" value="13h30"><span>13h30</span></label>
+          <label class="chip"><input type="radio" name="horario" value="14h30"><span>14h30</span></label>
+          <label class="chip"><input type="radio" name="horario" value="15h30"><span>15h30</span></label>
+          <label class="chip"><input type="radio" name="horario" value="16h30"><span>16h30</span></label>
+        </div>
+        <div class="chips cal-any">
+          <label class="chip"><input type="radio" name="horario" value="outro"><span>Outro horário</span></label>
+        </div>
+        <!-- Aparece ao tocar em "Outro horário": duas rodinhas (hora e minutos) para arrastar
+             para cima ou para baixo. São montadas no js/main.js (procure por "OUTRO_HORARIO"). -->
+        <div class="picker" id="slot-outro" hidden>
+          <div class="picker-show" aria-live="polite">
+            <span class="picker-show-label">Seu horário</span>
+            <strong class="picker-show-time"><span id="picker-h">--</span><i>h</i><span id="picker-m">--</span></strong>
+          </div>
+          <div class="wheels">
+            <div class="wheel-col">
+              <span class="wheel-label">Hora</span>
+              <div class="wheel" id="wheel-h" tabindex="0" role="spinbutton" aria-label="Hora"></div>
+            </div>
+            <span class="wheel-sep" aria-hidden="true">h</span>
+            <div class="wheel-col">
+              <span class="wheel-label">Minutos</span>
+              <div class="wheel" id="wheel-m" tabindex="0" role="spinbutton" aria-label="Minutos"></div>
+            </div>
+            <span class="wheel-band" aria-hidden="true"></span>
+          </div>
+          <p class="wheel-tip">Arraste para cima ou para baixo</p>
+          <input type="hidden" name="horarioOutro" id="horario-outro" value="">
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>4</span> Seus dados</legend>
+        <label class="field">
+          <span class="field-label">Seu nome completo <em>*</em></span>
+          <input type="text" name="nome" id="booking-nome" autocomplete="name" autocapitalize="words" maxlength="60" placeholder="Nome e sobrenome" required aria-describedby="booking-nome-dica">
+          <small class="field-hint" id="booking-nome-dica">Escreva seu nome e sobrenome.</small>
+        </label>
+        <p class="field-label">Já fez algum procedimento com a Anne?</p>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="cliente" value="primeira"><span>É minha primeira vez</span></label>
+          <label class="chip"><input type="radio" name="cliente" value="ja"><span>Já sou cliente</span></label>
+        </div>
+        <label class="field">
+          <span class="field-label">Quer contar algo? <small>(opcional)</small></span>
+          <textarea name="obs" rows="2" maxlength="300" placeholder="Ex.: tenho alergia a..., quero um efeito mais natural, vou com uma amiga"></textarea>
+        </label>
       </fieldset>
 
       <div class="booking-preview" aria-live="polite">
         <strong>Sua mensagem</strong>
-        <p id="booking-msg">Escolha o procedimento para montar sua mensagem.</p>
+        <p id="booking-msg">Escolha o procedimento e escreva seu nome para montar sua mensagem.</p>
       </div>
 
       <a class="btn btn-primary btn-lg booking-send is-disabled" id="booking-send" href="#" target="_blank" rel="noopener" aria-disabled="true">
@@ -655,6 +715,6 @@
   </div>
 </div>
 
-<script src="js/main.js?v=6"></script>
+<script src="js/main.js?v=15"></script>
 </body>
 </html>

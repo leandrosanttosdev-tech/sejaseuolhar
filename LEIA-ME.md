@@ -26,6 +26,11 @@ seja-seu-olhar-site/
 - Menu com rolagem suave até cada seção. O link da seção atual fica sublinhado.
 - Menu de celular em tela cheia, que fecha no X ou com a tecla Esc.
 - Todos os botões "Agendar" abrem o WhatsApp (11) 96721-3865 com uma mensagem pronta. Para trocar o número ou a mensagem, procure por `wa.me` no `index.html`.
+- Na janela de agendamento, a cliente escolhe a data num calendário. Domingo, segunda, dias que já passaram e feriados (nacionais, de Sergipe e de Aracaju) ficam bloqueados, e os feriados do mês aparecem listados embaixo. Dá para escolher até 3 meses à frente. Todos os botões da janela (procedimento, dia, horário, "primeira vez") marcam com um toque e desmarcam com outro toque no mesmo botão.
+  - Depois da data, a cliente escolhe o horário (8h30, 9h30, 10h30, 11h30, 13h30, 14h30, 15h30 ou 16h30). Se escolher o dia de hoje, os horários que já passaram ficam bloqueados. Para mudar os horários, procure por `name="horario"` no `index.html` e apague ou copie uma linha.
+  - O botão "Outro horário" abre duas rodinhas, como o despertador do celular: a cliente arrasta a hora e os minutos para cima ou para baixo (de 8h30 a 17h30, de 15 em 15 minutos). Horários que não existem ou já passaram ficam riscados, e a rodinha pula sozinha para o mais próximo. O horário escolhido aparece em destaque no topo. Para mudar o primeiro horário, o último ou o intervalo, procure por `OUTRO_HORARIO` no `js/main.js`.
+  - Por último, a cliente escreve o nome completo (obrigatório: nome e sobrenome; as iniciais viram maiúsculas sozinhas e "da", "de", "dos" ficam minúsculos), diz se é a primeira vez ou se já é cliente e pode deixar uma observação. Tudo isso vai na mensagem do WhatsApp. O telefone não é pedido porque a Anne já recebe a mensagem do número da cliente. O nome fica guardado no aparelho da cliente para já vir preenchido na próxima vez.
+  - Para incluir feriados de 2027, uma folga ou uma viagem: abra `js/main.js`, procure por `FERIADOS` e acrescente uma linha no formato `'2027-01-01': 'Nome do dia',`.
 - Os links do Instagram abrem o @sejaseuolhar.
 - Antes e depois: dá para arrastar com o mouse ou com o dedo, e também usar as setas do teclado.
 - Perguntas frequentes abrem uma de cada vez, com animação.

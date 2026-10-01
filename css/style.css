@@ -620,6 +620,94 @@ img.img-reveal.is-in, .img-reveal.is-in > img, .img-reveal.is-in > .placeholder 
 .chip input:focus-visible + span { outline: 2px solid var(--rosa); outline-offset: 2px; }
 .chip-wide { flex-basis: 100%; }
 .chip-wide > span { width: 100%; justify-content: center; }
+/* Procedimentos: duas colunas, todos os botões do mesmo tamanho */
+.chips-servico { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.chips-servico .chip { display: flex; }
+.chips-servico .chip > span { width: 100%; min-height: 52px; justify-content: center; text-align: center; border-radius: 16px; padding: 8px 12px; }
+.chips-servico .chip-wide { grid-column: 1 / -1; }
+
+/* Calendário de escolha da data */
+.cal { background: #fff; border: 1px solid var(--linha); border-radius: 20px; padding: 14px 14px 12px; }
+.cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.cal-title { font-family: var(--serif); font-weight: 500; font-size: 22px; }
+.cal-nav { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--linha); background: var(--fundo); color: var(--preto); font-size: 22px; line-height: 1; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; padding: 0 0 3px; }
+.cal-nav:hover:not(:disabled) { border-color: var(--rosa-suave); }
+.cal-nav:disabled { opacity: .3; cursor: default; }
+.cal-week, .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.cal-week { margin-bottom: 4px; }
+.cal-week span { text-align: center; font-size: 11px; letter-spacing: .5px; text-transform: uppercase; color: var(--texto-3); }
+.cal-day { position: relative; height: 40px; border: 0; border-radius: 12px; background: transparent; color: var(--texto); font: inherit; font-size: 15px; cursor: pointer; transition: background-color .2s ease, color .2s ease; }
+.cal-day:hover:not(:disabled) { background: var(--fundo-2); }
+.cal-day:focus-visible { outline: 2px solid var(--rosa); outline-offset: 1px; }
+.cal-day.is-today { box-shadow: inset 0 0 0 1px var(--rosa-suave); }
+.cal-day.is-off { color: var(--nude-escuro); text-decoration: line-through; cursor: default; }
+.cal-day.is-feriado { color: var(--rosa); background: #FCEFF5; cursor: help; }
+.cal-day.is-feriado::after { content: ""; position: absolute; left: 50%; bottom: 5px; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: var(--rosa); }
+.cal-day.is-selected, .cal-day.is-selected:hover { background: var(--rosa); color: #fff; }
+.cal-legend { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 6px; margin-top: 10px; font-size: 12px; color: var(--texto-3); }
+.cal-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-left: 8px; }
+.cal-dot:first-child { margin-left: 0; }
+.cal-dot-off { background: var(--cinza); }
+.cal-dot-feriado { background: var(--rosa); }
+.cal-holidays { list-style: none; margin: 8px 0 0; padding: 0; font-size: 13px; color: var(--texto-2); }
+.cal-holidays:empty { display: none; }
+.cal-holidays li { padding: 3px 0; }
+.cal-holidays b { color: var(--rosa); font-weight: 600; margin-right: 4px; }
+.cal-any { margin-top: 10px; }
+/* Dados da cliente */
+.field { display: block; margin-bottom: 14px; }
+.field-label { display: block; font-size: 13px; color: var(--texto-2); margin-bottom: 6px; }
+.field-label em { color: var(--rosa); font-style: normal; }
+.field-label small { color: var(--texto-3); font-size: 12px; }
+p.field-label { margin-top: 2px; }
+/* "Outro horário": hora + minutos */
+.picker { margin-top: 12px; background: #fff; border: 1px solid var(--linha); border-radius: 20px; padding: 16px 14px 14px; animation: pickerIn .35s ease; }
+.picker[hidden] { display: none; }
+@keyframes pickerIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+.picker-show { display: flex; align-items: baseline; justify-content: space-between; padding: 0 4px 12px; margin-bottom: 4px; border-bottom: 1px solid var(--linha); }
+.picker-show-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--texto-3); }
+.picker-show-time { font-family: var(--serif); font-weight: 500; font-size: 38px; line-height: 1; color: var(--rosa); letter-spacing: 1px; }
+.picker-show-time i { font-style: normal; font-size: .7em; margin: 0 1px; }
+/* Rodinhas de hora e minutos (arrastar para cima/baixo) */
+.wheels { position: relative; display: flex; align-items: flex-start; justify-content: center; gap: 4px; padding-top: 6px; }
+.wheel-col { position: relative; z-index: 1; width: 96px; }
+.wheel-label { display: block; height: 22px; text-align: center; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--texto-3); }
+.wheel { height: 220px; padding: 88px 0; overflow-y: auto; scroll-snap-type: y mandatory; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; scrollbar-width: none; cursor: grab; outline: none; touch-action: pan-y;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 34%, #000 66%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 34%, #000 66%, transparent 100%); }
+.wheel::-webkit-scrollbar { display: none; }
+.wheel.is-dragging { scroll-snap-type: none; cursor: grabbing; }
+.wheel:focus-visible { box-shadow: inset 0 0 0 2px var(--rosa-suave); border-radius: 14px; }
+.wheel-item { height: 44px; display: flex; align-items: center; justify-content: center; scroll-snap-align: center; font-family: var(--serif); font-size: 26px; font-weight: 500; color: var(--texto-3); user-select: none; -webkit-user-select: none; transition: color .15s ease, transform .15s ease; font-variant-numeric: lining-nums tabular-nums; }
+.wheel-item.is-center { color: var(--rosa); transform: scale(1.18); }
+.wheel-item.is-off { color: var(--cinza); text-decoration: line-through; text-decoration-thickness: 1px; }
+.wheel-sep { position: relative; z-index: 1; align-self: center; margin-top: 22px; font-family: var(--serif); font-size: 26px; color: var(--rosa); }
+.wheel-band { position: absolute; left: 0; right: 0; top: calc(6px + 22px + 88px); height: 44px; border-radius: 12px; background: #FCEFF5; border-top: 1px solid #F3CFE1; border-bottom: 1px solid #F3CFE1; pointer-events: none; }
+.wheel-tip { text-align: center; font-size: 12px; color: var(--texto-3); margin-top: 6px; }
+.picker-show-time { font-variant-numeric: lining-nums; }
+@media (prefers-reduced-motion: reduce) { .picker { animation: none; } }
+.field input, .field textarea { display: block; width: 100%; padding: 12px 16px; border: 1px solid var(--linha); border-radius: 14px; background: #fff; color: var(--texto); font: inherit; font-size: 16px; line-height: 1.4; resize: vertical; transition: border-color .2s ease; }
+.field input::placeholder, .field textarea::placeholder { color: var(--nude-escuro); }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--rosa); box-shadow: 0 0 0 3px rgba(194, 0, 107, .12); }
+.field input.is-invalid { border-color: var(--rosa); background: #FCEFF5; }
+.field-hint { display: block; margin-top: 6px; font-size: 12px; color: var(--texto-3); }
+.field input.is-invalid + .field-hint { color: var(--rosa); }
+.field + p.field-label + .chips { margin-bottom: 14px; }
+/* Horários */
+.slots-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--texto-3); margin: 4px 0 8px; }
+.slots + .slots-label { margin-top: 14px; }
+.slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.slots .chip > span { width: 100%; justify-content: center; padding: 8px 4px; }
+.chip.is-off { cursor: default; }
+.chip.is-off > span { color: var(--nude-escuro); text-decoration: line-through; background: transparent; border-style: dashed; }
+@media (max-width: 340px) {
+  .slots { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 360px) {
+  .cal { padding: 12px 8px 10px; }
+  .cal-day { height: 36px; font-size: 14px; }
+  .cal-week span { font-size: 10px; letter-spacing: 0; }
+}
+
 .booking-preview { background: var(--fundo-2); border-radius: 16px; padding: 14px 16px; font-size: 14px; line-height: 1.5; color: var(--texto-2); }
 .booking-preview > strong { display: block; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--texto-3); margin-bottom: 4px; font-weight: 500; }
 .booking-preview p { white-space: pre-line; }
