@@ -24,3 +24,9 @@ node_modules/
 *.log
 *.tmp
 _teste*.html
+
+# Prévia da página da mentoria (textos, preços e depoimentos de exemplo).
+# Só tire daqui quando a Anne confirmar os dados reais, para não publicar por engano.
+mentoria.html
+css/mentoria.css
+js/mentoria.js

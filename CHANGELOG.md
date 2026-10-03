@@ -6,7 +6,15 @@ O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e 
 
 ## [Não lançado]
 
+### Adicionado
+- Política de segurança de conteúdo (CSP) e política de referência em todas as páginas.
+- Página de política de privacidade (LGPD), com link no rodapé e aviso nas janelas de agendamento e de inscrição.
+- Página de erro 404 no visual do site e `sitemap.xml` para o Google.
+
 ### Alterado
+- Estilos que ficavam dentro do HTML passaram para o CSS, e a CSP deixou de liberar estilos internos.
+- Política de privacidade: aviso de que o mapa do Google pode usar cookies.
+- Link e chamada da página da mentoria ocultos até a página ter dados reais.
 - Seção de vídeos "Em movimento" oculta até os vídeos serem publicados, para não exibir espaços vazios.
 
 ## [1.2.0] - 2026-09-30

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Lista de páginas para o Google. Envie este endereço no Google Search Console:
+     https://leandrosanttosdev-tech.github.io/sejaseuolhar/sitemap.xml
+     Ao publicar a página da mentoria, inclua-a aqui. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://leandrosanttosdev-tech.github.io/sejaseuolhar/</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://leandrosanttosdev-tech.github.io/sejaseuolhar/privacidade.html</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+</urlset>

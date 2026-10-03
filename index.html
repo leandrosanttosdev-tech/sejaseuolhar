@@ -3,6 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Segurança: só permite carregar arquivos do próprio site, do Google Fonts e do Google Maps.
+       Se incluir um serviço novo (Analytics, Pixel, outro mapa...), libere o endereço dele aqui
+       e nas outras páginas (mentoria.html, privacidade.html e 404.html). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src https://www.google.com https://maps.google.com; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Seja Seu Olhar · Extensão de Cílios, Nanopigmentação e Brow Lamination em Aracaju</title>
   <meta name="description" content="Especialista em realçar o olhar em Aracaju-SE: extensão de cílios, nanopigmentação, design de sobrancelhas e brow lamination com o Método UP EYES. Nota 5,0 no Google. Agende seu horário!">
   <meta name="theme-color" content="#1F1A1C">
@@ -30,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=15">
+  <link rel="stylesheet" href="css/style.css?v=19">
 
   <!-- Dados para o Google (aparece melhor nas buscas) -->
   <script type="application/ld+json">
@@ -62,7 +67,7 @@
 <body>
 
 <!-- Ícones reutilizáveis -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<svg class="svg-sprite" width="0" height="0" aria-hidden="true">
   <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
   <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 20V4M5 11l7-7 7 7"/></symbol>
@@ -111,6 +116,8 @@
       <a href="#up-eyes">UP EYES</a>
       <a href="#resultados">Resultados</a>
       <a href="#como-funciona">Como funciona</a>
+      <!-- Mentoria: oculta até a página ter textos, preços, turmas e depoimentos reais. Para mostrar, apague o "hidden" aqui e na seção CHAMADA PARA A MENTORIA. -->
+      <a href="mentoria.html" class="nav-mentoria" hidden target="_blank" rel="noopener">Mentoria <span class="nav-badge">Novo</span></a>
       <a href="#duvidas">Dúvidas</a>
       <a href="https://wa.me/5511967213865?text=Ol%C3%A1%2C%20Anne!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio." class="btn btn-dark nav-cta" target="_blank" rel="noopener">Agendar horário</a>
     </nav>
@@ -142,14 +149,14 @@
   </a>
 
   <div class="container hero-content">
-    <span class="eyebrow hero-anim" style="--d:0">Extensão de Cílios · Nanopigmentação · Brow Lamination</span>
+    <span class="eyebrow hero-anim d0">Extensão de Cílios · Nanopigmentação · Brow Lamination</span>
     <h1 class="hero-title">
-      <span class="line"><span style="--d:1">Governe sua</span></span>
-      <span class="line"><span style="--d:2">própria imagem.</span></span>
-      <span class="line"><em style="--d:3">Seja seu olhar.</em></span>
+      <span class="line"><span class="d1">Governe sua</span></span>
+      <span class="line"><span class="d2">própria imagem.</span></span>
+      <span class="line"><em class="d3">Seja seu olhar.</em></span>
     </h1>
-    <p class="hero-text hero-anim" style="--d:4">Especialista em levantar olhares com o Método UP EYES, em Aracaju. Cílios, sobrancelhas e olhar desenhados sob medida para você.</p>
-    <div class="hero-actions hero-anim" style="--d:5">
+    <p class="hero-text hero-anim d4">Especialista em levantar olhares com o Método UP EYES, em Aracaju. Cílios, sobrancelhas e olhar desenhados sob medida para você.</p>
+    <div class="hero-actions hero-anim d5">
       <a href="https://wa.me/5511967213865?text=Ol%C3%A1%2C%20Anne!%20Vim%20pelo%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio." class="btn btn-primary btn-lg btn-shine" target="_blank" rel="noopener">
         Agendar meu procedimento <svg class="ico"><use href="#i-arrow-right"/></svg>
       </a>
@@ -157,7 +164,7 @@
     </div>
   </div>
 
-  <div class="container hero-footer hero-anim" style="--d:6">
+  <div class="container hero-footer hero-anim d6">
     <div class="hero-proof">
     <a href="https://www.instagram.com/sejaseuolhar/" class="hero-insta" target="_blank" rel="noopener">
       <svg class="ico"><use href="#i-insta"/></svg> @sejaseuolhar <span>· mais de <b class="count" data-to="1300">1.300</b> seguidoras</span>
@@ -237,7 +244,7 @@
         <span>Close do olhar depois do método, de frente, luz natural</span>
       </div>
       <!-- FOTO: troque a div abaixo por <img src="img/up-eyes-detalhe.jpg" alt="..." class="collage-small img-reveal" loading="lazy" data-parallax="0.08"> -->
-      <div class="collage-small placeholder placeholder-dark img-reveal" style="--delay:.25s" data-parallax="0.08">
+      <div class="collage-small placeholder placeholder-dark img-reveal" data-parallax="0.08">
         <svg class="ico"><use href="#i-camera"/></svg>
         <strong>Detalhe</strong>
       </div>
@@ -343,7 +350,7 @@
         <img src="img/depois-cilios.jpg" alt="Depois" class="ba-img">  (dentro de .ba-after)
     -->
     <div class="ba-grid">
-      <div class="ba reveal" style="--pos:50%">
+      <div class="ba reveal">
         <div class="ba-after"><div class="ba-placeholder ba-ph-after"></div></div>
         <div class="ba-before"><div class="ba-placeholder ba-ph-before"></div></div>
         <span class="ba-label ba-label-before">Antes</span>
@@ -352,7 +359,7 @@
         <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois: Extensão de Cílios">
       </div>
 
-      <div class="ba reveal" style="--pos:50%">
+      <div class="ba reveal">
         <div class="ba-after"><div class="ba-placeholder ba-ph-after"></div></div>
         <div class="ba-before"><div class="ba-placeholder ba-ph-before"></div></div>
         <span class="ba-label ba-label-before">Antes</span>
@@ -361,7 +368,7 @@
         <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois: Nanopigmentação">
       </div>
 
-      <div class="ba reveal" style="--pos:50%">
+      <div class="ba reveal">
         <div class="ba-after"><div class="ba-placeholder ba-ph-after"></div></div>
         <div class="ba-before"><div class="ba-placeholder ba-ph-before"></div></div>
         <span class="ba-label ba-label-before">Antes</span>
@@ -465,6 +472,19 @@
   </div>
 </section>
 
+<!-- ========== CHAMADA PARA A MENTORIA (leva para mentoria.html) ==========
+  Oculta (hidden) até a página da mentoria ter textos, preços, turmas e depoimentos reais. -->
+<section class="mentoria-cta" hidden>
+  <div class="container mentoria-cta-inner">
+    <div>
+      <span class="eyebrow eyebrow-light">Para profissionais</span>
+      <h2>Você é profissional? Aprenda o <em>Método UP EYES</em> comigo.</h2>
+      <p>Mentoria presencial e online, com certificado, kit e suporte depois do curso.</p>
+    </div>
+    <a href="mentoria.html" class="btn btn-white btn-lg btn-shine" target="_blank" rel="noopener">Conhecer a mentoria <svg class="ico"><use href="#i-arrow-right"/></svg></a>
+  </div>
+</section>
+
 <!-- ========== DÚVIDAS ========== -->
 <section class="section section-soft" id="duvidas">
   <div class="container faq-wrap">
@@ -538,12 +558,12 @@
       Use fotos quadradas (1080x1080) dos seus melhores posts.
     -->
     <div class="insta-grid">
-      <a class="insta-item img-reveal" style="--delay:0s" href="https://www.instagram.com/sejaseuolhar/" target="_blank" rel="noopener" aria-label="Ver post no Instagram"><div class="insta-img placeholder"></div><span class="insta-over"><svg class="ico ico-lg"><use href="#i-insta"/></svg></span></a>
-      <a class="insta-item img-reveal" style="--delay:.08s" href="https://www.instagram.com/sejaseuolhar/" target="_blank" rel="noopener" aria-label="Ver post no Instagram"><div class="insta-img placeholder placeholder-dark"></div><span class="insta-over"><svg class="ico ico-lg"><use href="#i-insta"/></svg></span></a>
-      <a class="insta-item img-reveal" style="--delay:.16s" href="https://www.instagram.com/sejaseuolhar/" target="_blank" rel="noopener" aria-label="Ver post no Instagram"><div class="insta-img placeholder"></div><span class="insta-over"><svg class="ico ico-lg"><use href="#i-insta"/></svg></span></a>
-      <a class="insta-item img-reveal" style="--delay:.24s" href="https://www.instagram.com/sejaseuolhar/" target="_blank" rel="noopener" aria-label="Ver post no Instagram"><div class="insta-img placeholder placeholder-dark"></div><span class="insta-over"><svg class="ico ico-lg"><use href="#i-insta"/></svg></span></a>
-      <a class="insta-item img-reveal" style="--delay:.32s" href="https://www.instagram.com/sejaseuolhar/" target="_blank" rel="noopener" aria-label="Ver post no Instagram"><div class="insta-img placeholder"></div><span class="insta-over"><svg class="ico ico-lg"><use href="#i-insta"/></svg></span></a>
-      <a class="insta-item img-reveal" style="--delay:.40s" href="https://www.instagram.com/sejaseuolhar/" target="_blank" rel="noopener" aria-label="Ver post no Instagram"><div class="insta-img placeholder placeholder-dark"></div><span class="insta-over"><svg class="ico ico-lg"><use href="#i-insta"/></svg></span></a>
+      <a class="insta-item img-reveal" href="https://www.instagram.com/sejaseuolhar/" target="_blank" rel="noopener" aria-label="Ver post no Instagram"><div class="insta-img placeholder"></div><span class="insta-over"><svg class="ico ico-lg"><use href="#i-insta"/></svg></span></a>
+      <a class="insta-item img-reveal" href="https://www.instagram.com/sejaseuolhar/" target="_blank" rel="noopener" aria-label="Ver post no Instagram"><div class="insta-img placeholder placeholder-dark"></div><span class="insta-over"><svg class="ico ico-lg"><use href="#i-insta"/></svg></span></a>
+      <a class="insta-item img-reveal" href="https://www.instagram.com/sejaseuolhar/" target="_blank" rel="noopener" aria-label="Ver post no Instagram"><div class="insta-img placeholder"></div><span class="insta-over"><svg class="ico ico-lg"><use href="#i-insta"/></svg></span></a>
+      <a class="insta-item img-reveal" href="https://www.instagram.com/sejaseuolhar/" target="_blank" rel="noopener" aria-label="Ver post no Instagram"><div class="insta-img placeholder placeholder-dark"></div><span class="insta-over"><svg class="ico ico-lg"><use href="#i-insta"/></svg></span></a>
+      <a class="insta-item img-reveal" href="https://www.instagram.com/sejaseuolhar/" target="_blank" rel="noopener" aria-label="Ver post no Instagram"><div class="insta-img placeholder"></div><span class="insta-over"><svg class="ico ico-lg"><use href="#i-insta"/></svg></span></a>
+      <a class="insta-item img-reveal" href="https://www.instagram.com/sejaseuolhar/" target="_blank" rel="noopener" aria-label="Ver post no Instagram"><div class="insta-img placeholder placeholder-dark"></div><span class="insta-over"><svg class="ico ico-lg"><use href="#i-insta"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -579,6 +599,7 @@
   </div>
   <div class="container footer-bottom">
     <span>© <span id="ano">2026</span> Seja Seu Olhar. Todos os direitos reservados.</span>
+    <a href="privacidade.html">Política de privacidade</a>
     <a href="https://www.instagram.com/leandrooo_santtos/" class="credit" target="_blank" rel="noopener">Desenvolvido por <strong>Leandrooo_santtos</strong></a>
     <a href="#topo">Voltar ao topo <svg class="ico"><use href="#i-arrow-up"/></svg></a>
   </div>
@@ -710,6 +731,7 @@
         <svg class="ico"><use href="#i-whats"/></svg> Enviar no WhatsApp
       </a>
       <p class="booking-note">Você confirma o horário direto com a Anne pelo WhatsApp.</p>
+      <p class="booking-privacy">Seus dados vão só para o WhatsApp da Anne. Seu nome fica salvo neste aparelho para a próxima vez. <a href="privacidade.html" target="_blank" rel="noopener">Política de privacidade</a></p>
     </form>
   </div>
 </div>

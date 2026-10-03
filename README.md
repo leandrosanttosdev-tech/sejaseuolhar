@@ -31,6 +31,7 @@ Site de uma página, focado em conversão: a visitante conhece os procedimentos,
 - **Vídeos sob demanda:** só baixam perto da seção e respeitam o modo de economia de dados.
 - **Acessibilidade:** navegação por teclado, rótulos ARIA e suporte a `prefers-reduced-motion`.
 - **SEO e compartilhamento:** metadados Open Graph, dados estruturados (Schema.org) e ícones para a tela inicial.
+- **Segurança e privacidade:** política de segurança de conteúdo (CSP) que só libera o próprio site, o Google Fonts e o Google Maps; nenhum dado sai do aparelho sem a cliente tocar em enviar no WhatsApp; [política de privacidade](privacidade.html) conforme a LGPD.
 
 ## Tecnologias
 
@@ -46,6 +47,9 @@ Site de uma página, focado em conversão: a visitante conhece os procedimentos,
 ```
 .
 ├── index.html            # Conteúdo e marcação da página
+├── privacidade.html      # Política de privacidade (LGPD)
+├── 404.html              # Página de erro para endereços inexistentes
+├── sitemap.xml           # Lista de páginas para o Google
 ├── css/
 │   └── style.css         # Estilos, tema e responsividade
 ├── js/

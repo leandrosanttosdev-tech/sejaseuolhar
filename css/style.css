@@ -54,6 +54,10 @@ em { font-style: italic; }
 .skip-link { position: absolute; left: 16px; top: -60px; z-index: 100; padding: 10px 16px; background: var(--preto); color: #fff; border-radius: 8px; }
 .skip-link:focus { top: 16px; color: #fff; }
 
+/* Elementos ocultos (atributo hidden) e ícones reutilizáveis */
+[hidden] { display: none !important; }
+.svg-sprite { position: absolute; }
+
 /* ---------- Botões ---------- */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 24px; border-radius: 999px; font-family: var(--sans); font-size: 15px; font-weight: 500; text-decoration: none; border: 0; cursor: pointer; transition: transform .2s ease, background-color .2s ease, color .2s ease, box-shadow .2s ease; }
 .btn:hover { transform: translateY(-2px); }
@@ -163,6 +167,7 @@ em { font-style: italic; }
 .collage-back { top: 0; right: 0; background: var(--nude); }
 .collage-main { top: 3.4%; right: 4.2%; object-fit: cover; box-shadow: 0 24px 48px rgba(31, 26, 28, .12); }
 .collage-small { position: absolute; left: 0; bottom: 0; width: 45%; height: 43%; border-radius: var(--radius); border: 8px solid var(--fundo); object-fit: cover; }
+.collage-small.img-reveal { --delay: .25s; }
 .collage-badge { position: absolute; left: 33%; top: 49.7%; width: clamp(84px, 9vw, 120px); aspect-ratio: 1; border-radius: 50%; background: var(--preto); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; animation: float 5s ease-in-out infinite; }
 .collage-badge .ico { width: 28%; height: 28%; stroke-width: 1.8; }
 .collage-badge span { font-family: var(--serif); font-size: clamp(14px, 1.4vw, 20px); letter-spacing: 1px; }
@@ -310,6 +315,8 @@ em { font-style: italic; }
 .hero-title .line { display: block; overflow: hidden; padding-bottom: .06em; }
 .hero-title .line > * { display: inline-block; transform: translateY(110%); transition: transform 1.1s var(--ease-out) calc(.25s + var(--d) * .1s); }
 .hero-anim { opacity: 0; transform: translateY(20px); transition: opacity 1s ease calc(.3s + var(--d) * .1s), transform 1s var(--ease-out) calc(.3s + var(--d) * .1s); }
+/* Ordem de entrada das partes do topo (antes ficava em style="--d:N" no HTML) */
+.d0 { --d: 0; } .d1 { --d: 1; } .d2 { --d: 2; } .d3 { --d: 3; } .d4 { --d: 4; } .d5 { --d: 5; } .d6 { --d: 6; }
 .is-loaded .hero-title .line > *, .is-loaded .hero-anim { opacity: 1; transform: none; }
 .no-js .hero-title .line > *, .no-js .hero-anim, .no-js .hero-photo { opacity: 1; transform: none; }
 .hero-footer.hero-anim { position: absolute; }
@@ -360,6 +367,8 @@ img.img-reveal.is-in, .img-reveal.is-in > img, .img-reveal.is-in > .placeholder 
 /* Instagram */
 .insta-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
 .insta-item { position: relative; display: block; aspect-ratio: 1; overflow: hidden; border-radius: 14px; --radius: 14px; }
+/* Fotos do Instagram aparecem uma depois da outra */
+.insta-item:nth-child(2) { --delay: .08s; } .insta-item:nth-child(3) { --delay: .16s; } .insta-item:nth-child(4) { --delay: .24s; } .insta-item:nth-child(5) { --delay: .32s; } .insta-item:nth-child(6) { --delay: .40s; }
 .insta-img { width: 100%; height: 100%; object-fit: cover; padding: 0; }
 .insta-over { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: flex; align-items: center; justify-content: center; background: rgba(31, 26, 28, .45); color: #fff; opacity: 0; transition: opacity .35s ease; }
 .insta-over .ico { transform: scale(.7); transition: transform .45s var(--ease-out); }
@@ -620,6 +629,39 @@ img.img-reveal.is-in, .img-reveal.is-in > img, .img-reveal.is-in > .placeholder 
 .chip input:focus-visible + span { outline: 2px solid var(--rosa); outline-offset: 2px; }
 .chip-wide { flex-basis: 100%; }
 .chip-wide > span { width: 100%; justify-content: center; }
+/* Chamada para a página da mentoria */
+/* Botão "Mentoria" do menu: pílula rosa com brilho pulsando e selo "Novo" */
+.nav a.nav-mentoria { display: inline-flex; align-items: center; gap: 8px; padding: 8px 10px 8px 16px; border-radius: 999px; background: #FCEFF5; color: var(--rosa); font-weight: 500; animation: mentoriaPulse 2.4s ease-out infinite; transition: background-color .2s ease, color .2s ease; }
+.nav a.nav-mentoria::after { display: none; }
+.nav a.nav-mentoria:hover { background: var(--rosa); color: #fff; }
+.nav-badge { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; line-height: 1; padding: 5px 8px; border-radius: 999px; background: var(--rosa); color: #fff; }
+.nav a.nav-mentoria:hover .nav-badge { background: #fff; color: var(--rosa); }
+@keyframes mentoriaPulse {
+  0% { box-shadow: 0 0 0 0 rgba(194, 0, 107, .45); }
+  70% { box-shadow: 0 0 0 12px rgba(194, 0, 107, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(194, 0, 107, 0); }
+}
+/* Brilho que passa pelo botão "Conhecer a mentoria" */
+.mentoria-cta .btn-shine::before { content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; background: linear-gradient(100deg, transparent, rgba(194, 0, 107, .18), transparent); transform: skewX(-20deg); animation: mentoriaShine 3.2s ease-in-out infinite; pointer-events: none; }
+@keyframes mentoriaShine { 0%, 55% { left: -60%; } 100% { left: 130%; } }
+@media (prefers-reduced-motion: reduce) {
+  .nav a.nav-mentoria, .mentoria-cta .btn-shine::before { animation: none; }
+}
+.mentoria-cta { position: relative; overflow: hidden; background: var(--preto); color: var(--fundo); padding: clamp(56px, 7vw, 88px) 0; }
+.mentoria-cta::before { content: ""; position: absolute; width: 560px; height: 560px; right: -160px; top: -240px; border-radius: 50%; background: radial-gradient(circle, rgba(194, 0, 107, .35), transparent 65%); pointer-events: none; }
+.mentoria-cta-inner { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 32px 48px; }
+.mentoria-cta h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 4vw, 52px); line-height: 1.05; margin: 14px 0 12px; max-width: 720px; }
+.mentoria-cta h2 em { color: var(--rosa-claro); }
+.mentoria-cta p { font-weight: 300; color: var(--texto-claro); font-size: 17px; }
+.mentoria-cta .btn { flex-shrink: 0; }
+@media (max-width: 900px) {
+  .nav a.nav-mentoria { background: transparent; color: var(--rosa-claro); padding: 0; animation: none; gap: 12px; }
+  .nav a.nav-mentoria:hover { background: transparent; color: var(--rosa-claro); }
+  .nav-badge { font-family: var(--sans); font-size: 11px; padding: 6px 10px; animation: mentoriaPulse 2.4s ease-out infinite; }
+  .mentoria-cta-inner { flex-direction: column; align-items: flex-start; }
+  .mentoria-cta .btn { width: 100%; }
+}
+
 /* Procedimentos: duas colunas, todos os botões do mesmo tamanho */
 .chips-servico { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .chips-servico .chip { display: flex; }
@@ -789,3 +831,25 @@ body.booking-open .floating-cta { opacity: 0; pointer-events: none; }
 @media (min-width: 901px) and (max-width: 1100px) {
   .hero-rating > span:not(.stars) { display: none; }
 }
+
+/* ---------- Aviso de privacidade nas janelas e página de Política de Privacidade ---------- */
+.booking-privacy { font-size: 12px; line-height: 1.5; color: var(--texto-3); text-align: center; margin-top: -14px; }
+.booking-privacy a { color: inherit; }
+.legal { padding: clamp(40px, 7vw, 88px) 0 clamp(56px, 8vw, 104px); }
+.legal-inner { max-width: calc(760px + var(--gutter) * 2); }
+.legal-back { display: inline-block; margin-bottom: 32px; font-size: 14px; color: var(--texto-3); text-decoration: none; }
+.legal-back:hover { color: var(--rosa); }
+.legal-title { font-family: var(--serif); font-weight: 400; font-size: clamp(38px, 6vw, 60px); line-height: 1.05; }
+.legal-title em { color: var(--rosa); }
+.legal-date { margin: 12px 0 32px; font-size: 14px; color: var(--texto-3); }
+.legal h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(24px, 3vw, 30px); line-height: 1.2; margin: 40px 0 12px; }
+.legal p, .legal li { font-size: 17px; font-weight: 300; color: var(--texto-2); }
+.legal p + p { margin-top: 12px; }
+.legal ul { margin: 12px 0 0; padding-left: 22px; }
+.legal li + li { margin-top: 6px; }
+.legal ul + p { margin-top: 16px; }
+.legal strong { font-weight: 500; color: var(--texto); }
+.legal-cta { margin-top: 48px; }
+.not-found { min-height: 100vh; min-height: 100svh; display: flex; align-items: center; }
+.not-found-code { font-family: var(--serif); font-size: clamp(72px, 14vw, 140px); line-height: 1; color: var(--rosa); margin-bottom: 8px; }
+.not-found .legal-title { margin-bottom: 20px; }

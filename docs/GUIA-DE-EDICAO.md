@@ -67,6 +67,29 @@ Para não pesar no celular:
 
 **Para tirar a seção:** no `index.html`, apague do comentário `VÍDEOS (EM MOVIMENTO)` até `FIM VÍDEOS`.
 
+## Segurança: serviços externos liberados
+
+Cada página (`index.html`, `mentoria.html`, `privacidade.html` e `404.html`) tem no começo uma linha `Content-Security-Policy`. Ela só deixa o site carregar arquivos dele mesmo, do Google Fonts e do Google Maps, o que impede scripts estranhos de rodarem.
+
+**Se for incluir um serviço novo** (Google Analytics, Pixel do Facebook, outro mapa, vídeo do YouTube...), libere o endereço dele nessa linha, em todas as páginas. Senão, o navegador bloqueia o serviço sem avisar. Pelo mesmo motivo, scripts e estilos novos devem ficar nos arquivos `.js` e `.css`, e não escritos dentro do HTML (nada de `<script>` com código, `<style>` ou `style="..."`): o navegador bloqueia.
+
+## Página da mentoria (prévia)
+
+A `mentoria.html` ainda tem textos, preços, turmas e depoimentos de exemplo. Por isso:
+
+- ela está no `.gitignore` (junto com `css/mentoria.css` e `js/mentoria.js`) e não vai para o GitHub;
+- o botão "Mentoria" do menu e a chamada para a mentoria no `index.html` estão com `hidden`.
+
+**Para publicar:** confirme os dados reais com a Anne (depoimentos só com autorização das alunas), tire as 3 linhas do `.gitignore`, apague o selo "Prévia de teste" da página, tire os dois `hidden` do `index.html` e inclua a página no `sitemap.xml`.
+
+## Página de erro (404)
+
+A `404.html` aparece quando alguém abre um endereço que não existe. Os caminhos dela começam com `/sejaseuolhar/`. Se o site ganhar domínio próprio, troque nas linhas marcadas com `(URL)`.
+
+## Privacidade
+
+A página `privacidade.html` explica à cliente o que acontece com os dados dela. Se o site passar a coletar algo novo (e-mail, telefone, formulário com servidor, Analytics), atualize o texto e a data no topo da página.
+
 ## Como trocar as cores
 
 No começo de `css/style.css`, altere as variáveis:
