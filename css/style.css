@@ -851,5 +851,5 @@ body.booking-open .floating-cta { opacity: 0; pointer-events: none; }
 .legal strong { font-weight: 500; color: var(--texto); }
 .legal-cta { margin-top: 48px; }
 .not-found { min-height: 100vh; min-height: 100svh; display: flex; align-items: center; }
-.not-found-code { font-family: var(--serif); font-size: clamp(72px, 14vw, 140px); line-height: 1; color: var(--rosa); margin-bottom: 8px; }
+.legal .not-found-code { font-family: var(--serif); font-size: clamp(72px, 14vw, 140px); line-height: 1; color: var(--rosa); margin-bottom: 8px; }
 .not-found .legal-title { margin-bottom: 20px; }
