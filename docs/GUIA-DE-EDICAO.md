@@ -50,12 +50,15 @@ Para uma foto nova ganhar o efeito de cortina, coloque `img-reveal` na classe de
 
 ## Vídeos (seção "Em movimento")
 
-Fica logo depois do antes e depois. Para os vídeos aparecerem, salve na pasta `video/`:
+Fica logo depois do antes e depois e **está oculta** enquanto os vídeos não chegam. Para ativar:
+
+1. Salve na pasta `video/` os arquivos abaixo.
+2. No `index.html`, procure por `id="videos" hidden` e apague a palavra `hidden`.
 
 - `reel-1.mp4` e `reel-2.mp4`
 - vertical (formato Reels), 720p, de 8 a 15 segundos e **menos de 4 MB cada** (comprima no HandBrake ou no freeconvert.com)
 
-Enquanto o arquivo não existir, aparece o espaço reservado. Para não pesar no celular:
+Para não pesar no celular:
 
 - o vídeo só baixa quando a cliente chega perto da seção;
 - toca sem som e só enquanto está na tela, pausando ao sair;

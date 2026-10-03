@@ -4,6 +4,11 @@ Todas as mudanças importantes deste projeto ficam registradas aqui.
 
 O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e as versões seguem o [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [Não lançado]
+
+### Alterado
+- Seção de vídeos "Em movimento" oculta até os vídeos serem publicados, para não exibir espaços vazios.
+
 ## [1.2.0] - 2026-09-30
 
 ### Adicionado
